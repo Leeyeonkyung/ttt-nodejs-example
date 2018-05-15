@@ -19,10 +19,15 @@ app.get('/move', (req, res) => {
   res.charset = 'UTF-8';
   var turn = req.query.turn;
   var pos = req.query.pos;
+  //ok 조건 검사
+  if (gameState.isXnext ? (turn =='X') : (turn == 'O')){
   console.log('move: '+turn+pos);
   gameState.squares[pos] = turn;
   gameState.isXnext = !gameState.isXnext;
   res.send('OK');
+}else{
+  res.send('error');
+}
 } );
 
 app.get('/', (req, res) => {
